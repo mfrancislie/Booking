@@ -27,6 +27,11 @@ app.use('/api/hotels', hotelRoute);
 app.use('/api/user', userRoute);
 app.use('/api/rooms', roomsRoute);
 
+// example
+app.use((req, res, next) => {
+  console.log('Hello im a middleware');
+});
+
 mongoose.connection.on('disconnected', () => {
   console.log('mongoDb disconnected');
 });

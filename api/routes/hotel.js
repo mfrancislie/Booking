@@ -41,6 +41,10 @@ router.delete('/:id', async (req, res) => {
 
 //GET
 router.get('/', async (req, res, next) => {
+  // example
+  console.log('Hello im a route');
+  next();
+
   try {
     const hotels = await Hotel.find();
     res.status(200).json(hotels);
