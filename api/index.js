@@ -28,8 +28,15 @@ app.use('/api/user', userRoute);
 app.use('/api/rooms', roomsRoute);
 
 // example
-app.use((req, res, next) => {
-  console.log('Hello im a middleware');
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || 'Something went wrong';
+  res.status(500).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack,
+  });
 });
 
 mongoose.connection.on('disconnected', () => {
