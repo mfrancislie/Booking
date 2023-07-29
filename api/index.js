@@ -1,6 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import authRoute from './routes/auth.js';
+import hotelRoute from './routes/hotel.js';
+import userRoute from './routes/user.js';
+import roomsRoute from './routes/rooms.js';
+
 const app = express();
 
 dotenv.config();
@@ -13,6 +18,12 @@ const connect = async () => {
     throw error;
   }
 };
+
+// middleware
+app.use('/api/auth', authRoute);
+app.use('/api/hotel', hotelRoute);
+app.use('/api/user', userRoute);
+app.use('/api/rooms', roomsRoute);
 
 mongoose.connection.on('disconnected', () => {
   console.log('mongoDb disconnected');
