@@ -20,8 +20,10 @@ const connect = async () => {
 };
 
 // middleware
+app.use(express.json());
+
 app.use('/api/auth', authRoute);
-app.use('/api/hotel', hotelRoute);
+app.use('/api/hotels', hotelRoute);
 app.use('/api/user', userRoute);
 app.use('/api/rooms', roomsRoute);
 
