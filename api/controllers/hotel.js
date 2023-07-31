@@ -30,10 +30,20 @@ export const deleteHotel = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getHotel = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.findById(req.params.id);
+    res.status(200).json(hotel);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const getHotels = async (req, res, next) => {
   try {
-    const hotel = await Hotel.find();
-    res.status(200).json(hotel);
+    const hotels = await Hotel.find();
+    res.status(200).json(hotels);
   } catch (err) {
     next(err);
   }
